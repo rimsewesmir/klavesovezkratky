@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Klávesnica</title>
+        <style>
+            body{background-color: rgb(255, 255, 255);}
+            h1{text-align: center;color: white; background-color: rgb(81, 134, 0); border-radius: 40px;}
+            button{cursor: pointer; background-color: rgb(95, 189, 218);}
+            .l1{background-color: rgb(183, 250, 0); left: 44%; display: block; top: 17%; width: 125px; height: 125px; border-radius: 100%; display: block; position: fixed;}
+            .l2{background-color: rgb(70, 149, 218); left: 40%; display: block; top: 37%; width: 125px; height: 125px; border-radius: 100%; display: block; position: fixed;}
+            .l3{background-color: rgb(233, 46, 202); left: 44%; display: block;top: 57%; width: 125px; height: 125px; border-radius: 100%; display: block; position: fixed;}
+            .l4{background-color: rgb(255, 136, 0); left: 39%; display: block; top: 77%; width: 125px; height: 125px; border-radius: 100%; display: block; position: fixed;}
+            #buttonsvetly{background-color: white; color: black; cursor: pointer; border-radius: 10px;}
+            #buttontmavy{background-color: black; color: white; cursor: pointer; border-radius: 10px;}
+            #xp{font-size:140%; position: fixed; right: 6%; top: -1%; display: block; color: black; background-color: rgba(0, 255, 255, 0.226); border-radius: 5px;}
+            p{color: rgb(22, 134, 0);}
+            .button12{background-color: rgb(183, 250, 0); position: fixed; display: block; width: 240px; height: 60px; border-radius: 20px; left: 40%;}
+            .div{position: fixed; height: 100%; width: 100%; left: 0; top: 0;}
+            .kontrola{font-size: 200%; display: block; position: fixed; width: auto; top: 80%;}
+            .pokracovani{font-size: 200%; display: block; position: fixed; width: auto; top: 80%; right: 0%;}
+            .vysledek{font-size: 400%; display: block; position: fixed; width: auto; top: 60%; left: 45%; color: black;}
+            .input{font-size: 240%; display: block; position: fixed; width: auto; left: 35%; top: 25%;}
+            .button4{background-color: rgb(61, 43, 9); position: fixed; display: block; width: 240px; height: 60px; border-radius: 20px; left: 20%;}
+            .button4:hover{background-color: rgb(71, 50, 11);}
+        </style>
+    </head>
+    <body>
+        <div id="uvod">
+            <button id="buttonsvetly"; onclick="svetly()">Světlý režim☀️</button>
+            <button id="buttontmavy"; onclick="tmavy()">Tmavý režim🌒</button>
+            <p id="xp"></p>
+            <h1>Nauč se klávesové zkratky!</h1>
+            <button id="l1" onclick="lekce1()" class="l1">Lekce 1</button>
+            <button id="l2" onclick="lekce2()" class="l2">Lekce 2</button>
+            <button id="l3" onclick="lekce3()" class="l3">Lekce 3</button>
+            <button id="l4" onclick="lekce4()" class="l4">Lekce 4</button>
+
+            <button id="l1fake" class="l1" style="display: none;">Lekce 1</button>
+            <button id="l2fake" class="l2" style="display: none;">Lekce 2</button>
+            <button id="l3fake" class="l3" style="display: none;">Lekce 3</button>
+            <button id="l4fake" class="l4" style="display: none;">Lekce 4</button>
+
+        </div>
+        <div id="div1" style="display: none;" class="div">
+            <div id="div11" class="div">
+                <h1>Zkopíruj tento text:</h1>
+                <p id="textl11">Random text od chata gpt. Ráno bylo nezvykle tiché a ulice ještě spaly pod lehkou mlhou. Na lavičce v parku seděl člověk s hrnkem horké kávy a pozoroval, jak se pomalu rozednívá. Někde v dálce projel první autobus a jeho zvuk se rozplynul mezi domy. Vzduch byl chladný, ale příjemně svěží. Byl to jeden z těch okamžiků, kdy se zdá, že se svět na chvíli zastavil.</p>
+                <input id="l11input" placeholder="Sem ho vlož" class="input">
+                <button id="kontrolal11" onclick="zkontrolovatl11()" class="kontrola">Zkontrolovat</button>
+                <p id="vysledekl11" class="vysledek"></p>
+                <button id="pokracovanil11" onclick="pokracovatl11()" class="pokracovani">Pokračovat</button>
+            </div>
+            <div id="div12" style="display: none;" class="div">
+                <h1>Jaká je klávesová zkratka pro ULOŽIT JAKO?</h1>
+                <button class="button12" style="top: 20%;" onclick="spatne12()" id="button12a">Ctrl+S</button>
+                <button class="button12" style="top: 30%;" onclick="spravne12()" id="button12b">Ctrl+Shift+S</button>
+                <button class="button12" style="top: 40%;" onclick="spatne12()" id="button12c">Shift+S</button>
+                <button class="button12" style="top: 50%;" onclick="spatne12()" id="button12d">S</button>
+                <button class="button12" style="top: 10%;" onclick="spatne12()" id="button12e">Win+s</button>
+                <p id="spravne12" class="vysledek"></p>
+                <button onclick="pokracovat12()" id="pokracovani12" style="display: none;" class="pokracovani">Pokračovat</button>
+            </div>
+            <div id="div13" style="display: none" class="div">
+                <h1>Jaká je klávesa pro psaní velkými písmeny?</h1>
+                <input id="vstupl13" class="input">
+                <button id="kontrolal13" class="kontrola" onclick="zkontrolovatl13()">Zkontrolovat</button>
+                <button id="pokracovanil13" class="pokracovani" onclick="pokracovatl13()" style="display: none;">Pokračovat</button>
+                <p id="vysledekl13" class="vysledek"></p>
+            </div>
+            <div id="div14" class="div" style="display: none;">
+                <h1>Napiš znaky středník, otevírací, uzavírací závorka, vykřičník. Odděluj mezerou</h1>
+                <input id="vstupl14" class="input">
+                <button onclick="zkontrolovatl14()" id="kontrolal14" class="kontrola">Zkontrolovat</button>
+                <button onclick="pokracovatl14()" id="pokracovanil14" class="pokracovani" style="display: none;">Pokračovat</button>
+                <p id="vysledekl14" class="vysledek"></p>
+            </div>
+            <div id="div15" class="div" style="display: none;">
+                <h1>Jaká je klávesová zkratka pro krok zpět?</h1>
+                <button class="button12" id="button15a" onclick="spravne15()" style="top: 10%;">Ctrl+Z</button>
+                <button class="button12" id="button15b" onclick="spatne15()" style="top: 20%;">Shift+Z</button>
+                <button class="button12" id="button15c" onclick="spatne15()" style="top: 30%;">Alt+Z</button>
+                <button class="button12" id="button15d" onclick="spatne15()" style="top: 40%;">Win+Z</button>
+                <p id="vysledekl15" class="vysledek"></p>
+                <button id="pokracovanil15" onclick="pokracovatl15()" class="pokracovani" style="display: none;">Pokračovat</button>
+            </div>
+            <div id="div16" class="div" style="display: none;">
+                <h1>Klávesa, která v prohlížeči dá celou obrazovku(zkryje panely atd. nahoře) je F kolik?<br>vyzkoušej v novém panelu</h1>
+                <input type="number" class="input" id="vstupl16">
+                <p id="vysledekl16" class="vysledek"></p>
+                <button id="kontrolal16" class="kontrola" onclick="zkontrolovatl16()">Zkontrolovat</button>
+                <button id="pokracovanil16" class="pokracovani" onclick="pokracovatl16()" style="display: none;">Pokračovat</button>
+            </div>
+            <div id="div17" class="div" style="display: none;">
+                <h1>Jak trvale smazat soubor?</h1>
+                <p id="vysledekl17" class="vysledek"></p>
+                <button onclick="spatne17()" class="button12" style="top: 10%;" id="button17a">Delete</button>
+                <button onclick="spravne17()" class="button12" style="top: 20%;" id="button17b">Shift+Delete</button>
+                <button onclick="spatne17()" class="button12" style="top: 30%;" id="button17c">Backspace</button>
+                <button onclick="spatne17()" class="button12" style="top: 40%;" id="button17d">Shift+backspace</button>
+                <button id="pokracovanil17" class="pokracovani" onclick="pokracovatl17()" style="display: none;">Pokračovat</button>
+            </div>
+            <div id="div18" class="div" style="display: none;">
+                <h1>Lekce hotová!</h1>
+                <p id="xpvysledek1" style="color: rgb(255, 255, 255); text-align: center; font-size: 400%; background-color: blueviolet; "></p>
+                <button onclick="pokracovatl18()" class="pokracovani">Pokračovat</button>
+            </div>
+        </div>
+
+
+        <div id="div2" style="display: none;" class="div">
+            <div id="div21" class="div">
+                <h1>Napiš znaky: hastag, zavináč, procento, rovná se. Odděluj mezerou</h1>
+                <input id="l21input" class="input">
+                <button id="kontrolal21" onclick="zkontrolovatl21()" class="kontrola">Zkontrolovat</button>
+                <p id="vysledekl21" class="vysledek"></p>
+                <button id="pokracovanil21" onclick="pokracovatl21()" class="pokracovani">Pokračovat</button>
+            </div>
+            <div id="div22" style="display: none;" class="div">
+                <h1>Jaká je klávesa pro zrušení akce?</h1>
+                <button class="button12" style="top: 20%;" onclick="spatne22()" id="button22a">Alt</button>
+                <button class="button12" style="top: 30%;" onclick="spatne22()" id="button22b">Home</button>
+                <button class="button12" style="top: 40%;" onclick="spravne22()" id="button22c">Esc</button>
+                <button class="button12" style="top: 50%;" onclick="spatne22()" id="button22d">Tab</button>
+                <button class="button12" style="top: 10%;" onclick="spatne22()" id="button22e">Win</button>
+                <p id="spravne22" class="vysledek"></p>
+                <button onclick="pokracovat22()" id="pokracovani22" style="display: none;" class="pokracovani">Pokračovat</button>
+            </div>
+            <div id="div23" style="display: none" class="div">
+                <h1>Jaká je klávesa pro Ctrl a Alt dohromady?</h1>
+                <input id="vstupl23" class="input">
+                <button id="kontrolal23" class="kontrola" onclick="zkontrolovatl23()">Zkontrolovat</button>
+                <button id="pokracovanil23" class="pokracovani" onclick="pokracovatl23()" style="display: none;">Pokračovat</button>
+                <p id="vysledekl23" class="vysledek"></p>
+            </div>
+            <div id="div24" class="div" style="display: none;">
+                <h1>Jaká je klávesa pro potvrzení akce?</h1>
+                <input id="vstupl24" class="input">
+                <button onclick="zkontrolovatl24()" id="kontrolal24" class="kontrola">Zkontrolovat</button>
+                <button onclick="pokracovatl24()" id="pokracovanil24" class="pokracovani" style="display: none;">Pokračovat</button>
+                <p id="vysledekl24" class="vysledek"></p>
+            </div>
+            <div id="div25" class="div" style="display: none;">
+                <h1>Jaká je klávesová zkratka pro vypnutí počítače?</h1>
+                <button class="button12" id="button25a" onclick="spravne25()" style="top: 10%;">Alt+F4</button>
+                <button class="button12" id="button25b" onclick="spatne25()" style="top: 20%;">Shift+F4</button>
+                <button class="button12" id="button25c" onclick="spatne25()" style="top: 30%;">Ctrl+F4</button>
+                <button class="button12" id="button25d" onclick="spatne25()" style="top: 40%;">Win+F4</button>
+                <p id="vysledekl25" class="vysledek"></p>
+                <button id="pokracovanil25" onclick="pokracovatl25()" class="pokracovani" style="display: none;">Pokračovat</button>
+            </div>
+            <div id="div26" class="div" style="display: none;">
+                <h1>Kolik čísel je na Numpadu?</h1>
+                <input type="number" class="input" id="vstupl26">
+                <p id="vysledekl26" class="vysledek"></p>
+                <button id="kontrolal26" class="kontrola" onclick="zkontrolovatl26()">Zkontrolovat</button>
+                <button id="pokracovanil26" class="pokracovani" onclick="pokracovatl26()" style="display: none;">Pokračovat</button>
+            </div>
+            <div id="div27" class="div" style="display: none;">
+                <h1>Co se stane když zmáčkneš Win+2 nad písmenama(na český klávesnici ě)</h1>
+                <p id="vysledekl27" class="vysledek"></p>
+                <button onclick="spatne27()" class="button12" style="top: 10%;" id="button27a">Otevře se druhá aplikace na Startu</button>
+                <button onclick="spatne27()" class="button12" style="top: 20%;" id="button27b">Otevře se druhá aplikace na Ploše</button>
+                <button onclick="spravne27()" class="button12" style="top: 30%;" id="button27c">Otevře se druhá aplikace na Hlavním panelu</button>
+                <button id="pokracovanil27" class="pokracovani" onclick="pokracovatl27()" style="display: none;">Pokračovat</button>
+            </div>
+            <div id="div28" class="div" style="display: none;">
+                <h1>Lekce hotová!</h1>
+                <p id="xpvysledek2" style="color: rgb(255, 255, 255); text-align: center; font-size: 400%; background-color: blueviolet; "></p>
+                <button onclick="pokracovatl28()" class="pokracovani">Pokračovat</button>
+            </div>
+        </div>
+
+
+
+
+
+            <div id="div3" style="display: none;" class="div">
+            <div id="div31" class="div">
+                <h1>Jak se jmenuje klávesa pro přepínání mezi číslama a funkcema NumPadu?</h1>
+                <input id="l31input" class="input">
+                <button id="kontrolal31" onclick="zkontrolovatl31()" class="kontrola">Zkontrolovat</button>
+                <p id="vysledekl31" class="vysledek"></p>
+                <button id="pokracovanil31" onclick="pokracovatl31()" class="pokracovani">Pokračovat</button>
+            </div>
+            <div id="div32" style="display: none;" class="div">
+                <h1>Co dělá tato klávesa? ⌫</h1>
+                <button class="button12" style="top: 20%;" onclick="spatne32()" id="button32a">Smaže celý text</button>
+                <button class="button12" style="top: 30%;" onclick="spatne32()" id="button32b">Smaže celý následující text</button>
+                <button class="button12" style="top: 40%;" onclick="spatne32()" id="button32c">Smaže celý předchozí text</button>
+                <button class="button12" style="top: 50%;" onclick="spatne32()" id="button32d">Smaže následující písmeno</button>
+                <button class="button12" style="top: 10%;" onclick="spravne32()" id="button32e">Smaže předchozí písmeno</button>
+                <p id="spravne32" class="vysledek"></p>
+                <button onclick="pokracovat32()" id="pokracovani32" style="display: none;" class="pokracovani">Pokračovat</button>
+            </div>
+            <div id="div33" style="display: none" class="div">
+                <h1>Jak se jmenuje tato klávesa? ⌫</h1>
+                <input id="vstupl33" class="input">
+                <button id="kontrolal33" class="kontrola" onclick="zkontrolovatl33()">Zkontrolovat</button>
+                <button id="pokracovanil33" class="pokracovani" onclick="pokracovatl33()" style="display: none;">Pokračovat</button>
+                <p id="vysledekl33" class="vysledek"></p>
+            </div>
+            <div id="div34" class="div" style="display: none;">
+                <h1>Win + co musíte zmáčknout abyste minimalizovali všechny okna? (vyzkoušej😉. Je to písmeno L - O). Napiš pouze písmeno</h1>
+                <input id="vstupl34" class="input">
+                <button onclick="zkontrolovatl34()" id="kontrolal34" class="kontrola">Zkontrolovat</button>
+                <button onclick="pokracovatl34()" id="pokracovanil34" class="pokracovani" style="display: none;">Pokračovat</button>
+                <p id="vysledekl34" class="vysledek"></p>
+            </div>
+            <div id="div35" class="div" style="display: none;">
+                <h1>Jaká z těchto kláves otevře nastavení?⚙️</h1>
+                <button class="button12" id="button35a" onclick="spravne35()" style="top: 10%;">Win + I</button>
+                <button class="button12" id="button35b" onclick="spatne35()" style="top: 20%;">Shift+I</button>
+                <button class="button12" id="button35c" onclick="spatne35()" style="top: 30%;">Ctrl+I</button>
+                <button class="button12" id="button35d" onclick="spatne35()" style="top: 40%;">Alt+I</button>
+                <p id="vysledekl35" class="vysledek"></p>
+                <button id="pokracovanil35" onclick="pokracovatl35()" class="pokracovani" style="display: none;">Pokračovat</button>
+            </div>
+            <div id="div36" class="div" style="display: none;">
+                <h1>Vyjmi text z prvního pole a vlož to druhého</h1>
+                <input type="number" class="input" id="vstupl36" value="25002">
+                <input type="number" class="input" id="vstupl36a" style="top: 40%;">
+                <p id="vysledekl36" class="vysledek"></p>
+                <button id="kontrolal36" class="kontrola" onclick="zkontrolovatl36()">Zkontrolovat</button>
+                <button id="pokracovanil36" class="pokracovani" onclick="pokracovatl36()" style="display: none;">Pokračovat</button>
+            </div>
+            <div id="div37" class="div" style="display: none;">
+                <h1>Co se stane když zmáčkneš Win+Ctrl+Enter</h1>
+                <p id="vysledekl37" class="vysledek"></p>
+                <button onclick="spatne37()" class="button12" style="top: 10%;" id="button37a">Otevře se AI asistent</button>
+                <button onclick="spravne37()" class="button12" style="top: 20%;" id="button37b">Otevře se Předčítání</button>
+                <button onclick="spatne37()" class="button12" style="top: 30%;" id="button37c">Otevře se Webový prohlížeč</button>
+                <button id="pokracovanil37" class="pokracovani" onclick="pokracovatl37()" style="display: none;">Pokračovat</button>
+            </div>
+            <div id="div38" class="div" style="display: none;">
+                <h1>Lekce hotová!</h1>
+                <p id="xpvysledek3" style="color: rgb(255, 255, 255); text-align: center; font-size: 400%; background-color: blueviolet; "></p>
+                <button onclick="pokracovatl38()" class="pokracovani">Pokračovat</button>
+            </div>
+        </div>
+        <div style="display: none; cursor: none;" class="div" id="div4">
+            <h1>NO CURSOR CHALLENGE</h1>
+            <p style="text-align: right; font-size: 30px; margin-right: 10%; color: rgb(80, 80, 80); cursor: none;">Klikej na tlačítka v pořadí, v jakém jsou na seznamu ↓</p>
+            <p style="text-align: right; font-size: 26px; margin-right: 10%; color: rgb(42, 106, 224); cursor: none;">Znovu načíst stránku</p>
+            <p style="text-align: right; font-size: 26px; margin-right: 10%; color: rgb(42, 106, 224); cursor: none;">Otevřít nový panel</p>
+            <p style="text-align: right; font-size: 26px; margin-right: 10%; color: rgb(42, 106, 224); cursor: none;">Vybrat všechny soubory</p>
+            <p style="text-align: right; font-size: 26px; margin-right: 10%; color: rgb(42, 106, 224); cursor: none;">Uložit</p>
+            <p style="text-align: right; font-size: 26px; margin-right: 10%; color: rgb(42, 106, 224); cursor: none;">Vrátit Ctrl+Z</p>
+            <p style="text-align: right; font-size: 26px; margin-right: 10%; color: rgb(42, 106, 224); cursor: none;">Vytisknout stránku</p>
+            <button class="button4" onclick="ctrlabf()" style="top: 10%; cursor: none;" id="ctrlab">Ctrl+A</button>
+            <button class="button4" onclick="ctrlpbf()" style="top: 20%; cursor: none;" id="ctrlpb">Ctrl+P</button>
+            <button class="button4" onclick="ctrltbf()" style="top: 30%; cursor: none;" id="ctrltb">Ctrl+T</button>
+            <button class="button4" onclick="ctrlybf()" style="top: 40%; cursor: none;" id="ctrlyb">Ctrl+Y</button>
+            <button class="button4" onclick="ctrlrbf()" style="top: 50%; cursor: none;" id="ctrlrb">Ctrl+R</button>
+            <button class="button4" onclick="ctrlsbf()" style="top: 60%; cursor: none;" id="ctrlsb">Ctrl+S</button>
+            <p id="vysledek4" class="vysledek"></p>
+            <button onclick="pokracovat4()" id="pokracovani4" style="display: none; cursor: none;" class="pokracovani">Pokračovat</button>
+        </div> 
+        <div id="div41" class="div" style="display: none; background-color: rgb(228, 255, 77);">
+            <h1>Dokončil(a) jsi celou hru! gratuluju!</h1>
+            <button onclick="jdidomu()" style="border: none; font-size: 200%; display: block; position: fixed; top: 2%; left: 2%; background-color: unset;" class="none">🏠</button>
+            <p id="xpvysledek4" style="cursor: pointer; color: rgb(255, 255, 255); text-align: center; font-size: 400%; background-color: blueviolet; width: 40%; left: 30%; display: block; position: fixed; border-radius: 40px;"></p>
+            <p style="text-align: center; font-size: 400%; display: block; position: fixed; top: 60%; left: 4%;">🏆 🎺 ✨ 🎇 🥇 🎉 🚀 🌟 🎖️ 💥 🏅 🎆</p>
+        </div>
+
+
+
+
+
+        <script>
+            let chyby = 0
+            let xp = 0;
+            let xp2 = 0;
+            let xp3 = 0;
+            let xp4 = 0;
+            let vysl4 = 0;
+            document.getElementById("xp").innerHTML = "Tvoje XP: "+xp;
+            function svetly(){document.body.style.backgroundColor="white"; document.getElementById("xp").style.color="black"}
+            function tmavy(){document.body.style.backgroundColor="black"; document.getElementById("xp").style.color="white"}
+            document.getElementById("l2").style.display="none";
+            document.getElementById("l2fake").style.display="block";
+            document.getElementById("l3").style.display="none";
+            document.getElementById("l3fake").style.display="block";
+            document.getElementById("l4").style.display="none";
+            document.getElementById("l4fake").style.display="block";
+            function lekce1(){document.getElementById("uvod").style.display="none";
+                              document.getElementById("div1").style.display="block";
+                              document.getElementById("div11").style.display="block";
+                              document.getElementById("div11").style.fontSize="100%";
+                              document.getElementById("pokracovanil11").style.display="none"
+                        }
+                        function zkontrolovatl11(){let vstupl11 = document.getElementById("l11input").value;
+                                     let spravnel11 = document.getElementById("textl11").innerText;
+                                     if(vstupl11 === spravnel11){document.getElementById("vysledekl11").innerHTML = "Správně";
+                                        document.getElementById("div11").style.backgroundColor = "lightgreen";
+                                        xp = xp+2
+                                     }
+                                     else{document.getElementById("vysledekl11").innerHTML = "Špatně";
+                                          document.getElementById("div11").style.backgroundColor = "rgb(255, 70, 70)";
+                                          chyby=chyby+1
+                                     }
+                                     document.getElementById("kontrolal11").style.display = "none";
+                                     document.getElementById("pokracovanil11").style.display = "block";
+                        }
+                        function pokracovatl11(){document.getElementById("div11").style.display="none";
+                                                 document.getElementById("div12").style.display="block"
+                        }
+                        function spravne12(){document.getElementById("div12").style.backgroundColor = "lightgreen";
+                                             document.getElementById("button12a").style.display = "none";
+                                             document.getElementById("button12b").style.display = "none";
+                                             document.getElementById("button12c").style.display = "none";
+                                             document.getElementById("button12d").style.display = "none";
+                                             document.getElementById("button12e").style.display = "none";
+                                             document.getElementById("pokracovani12").style.display = "block";
+                                             document.getElementById("spravne12").textContent = "Správně";
+                                             xp = xp+2
+                        }
+                        function spatne12(){document.getElementById("div12").style.backgroundColor = "rgb(255, 70, 70)";
+                                             document.getElementById("button12a").style.display = "none";
+                                             document.getElementById("button12b").style.display = "none";
+                                             document.getElementById("button12c").style.display = "none";
+                                             document.getElementById("button12d").style.display = "none";
+                                             document.getElementById("button12e").style.display = "none";
+                                             document.getElementById("pokracovani12").style.display = "block";
+                                             document.getElementById("spravne12").innerHTML = "Špatně.<br><span style='font-size: 28%'> Správně je Ctrl+Shift+S</span>";
+                                             chyby=chyby+1
+                        }
+                        function pokracovat12(){document.getElementById("div12").style.display="none";
+                                                 document.getElementById("div13").style.display="block"}
+                        function zkontrolovatl13(){let vstupl13 = document.getElementById("vstupl13").value;
+                                                 if(vstupl13 ==="CapsLock"||vstupl13==="capslock" || vstupl13==="CAPSLOCK" || vstupl13==="Caps Lock" || vstupl13==="CAPS LOCK" || vstupl13==="caps lock")
+                                                    {document.getElementById("vysledekl13").innerHTML = "Správně";
+                                                     document.getElementById("div13").style.backgroundColor = "lightgreen";
+                                                     document.getElementById("kontrolal13").style.display = "none";
+                                                     document.getElementById("pokracovanil13").style.display = "block";
+                                                     xp = xp+2
+                                                    }
+                                                 else{document.getElementById("vysledekl13").innerHTML = "Špatně.<br><span style='font-size: 28%'> Správně je CapsLock</span>";
+                                                     document.getElementById("div13").style.backgroundColor = "rgb(255, 70, 70)";
+                                                     document.getElementById("kontrolal13").style.display = "none";
+                                                     document.getElementById("pokracovanil13").style.display = "block";
+                                                    chyby=chyby+1}
+
+                        }
+                        function pokracovatl13(){document.getElementById("div13").style.display="none";document.getElementById("div14").style.display="block"}
+                        function zkontrolovatl14(){let vstupl14 = document.getElementById("vstupl14").value;
+                                                   if(vstupl14 === "; ( ) !" ||vstupl14 === "; ( ) ! " ||vstupl14 === " ; ( ) ! "){document.getElementById("div14").style.backgroundColor="lightgreen";
+                                                                              document.getElementById("vysledekl14").textContent="Správně";
+                                                                              document.getElementById("pokracovanil14").style.display="block";
+                                                                              document.getElementById("kontrolal14").style.display="none";
+                                                                              xp = xp+2
+                                                                             }
+                                                    else{document.getElementById("div14").style.backgroundColor="rgb(255, 70, 70)";
+                                                         document.getElementById("vysledekl14").textContent="Špatně";
+                                                         document.getElementById("pokracovanil14").style.display="block";
+                                                         document.getElementById("kontrolal14").style.display="none";
+                                                         chyby=chyby+1}
+                        }
+                        function pokracovatl14(){document.getElementById("div14").style.display="none";document.getElementById("div15").style.display="block"}
+                        function spravne15(){document.getElementById("button15a").style.display="none";
+                                             document.getElementById("button15b").style.display="none";
+                                             document.getElementById("button15c").style.display="none";
+                                             document.getElementById("button15d").style.display="none";
+                                             document.getElementById("div15").style.backgroundColor="lightgreen";
+                                             document.getElementById("vysledekl15").textContent="Správně";
+                                             document.getElementById("pokracovanil15").style.display="block";
+                                             xp = xp+2
+                        }
+                        function spatne15(){document.getElementById("button15a").style.display="none";
+                                             document.getElementById("button15b").style.display="none";
+                                             document.getElementById("button15c").style.display="none";
+                                             document.getElementById("button15d").style.display="none";
+                                             document.getElementById("div15").style.backgroundColor="rgb(255, 70, 70)";
+                                             document.getElementById("vysledekl15").innerHTML="Špatně.<br><span style='font-size: 28%'> Správně je CTRL+Z</span>";
+                                             document.getElementById("pokracovanil15").style.display="block";
+                                             chyby=chyby+1}
+                        function pokracovatl15(){document.getElementById("div15").style.display="none";document.getElementById("div16").style.display="block"}
+                        function zkontrolovatl16(){let vstupl16 = Number(document.getElementById("vstupl16").value);
+                                                   if(vstupl16 === 11){document.getElementById("vysledekl16").innerHTML="Správně";
+                                                                         document.getElementById("kontrolal16").style.display="none";
+                                                                         document.getElementById("div16").style.backgroundColor="lightgreen";
+                                                                         document.getElementById("pokracovanil16").style.display="block";
+                                                                         xp = xp+2
+                                                   }
+                                                   else{document.getElementById("vysledekl16").innerHTML="Špatně.<br><span style='font-size: 28%'>Správně je F11</span>";
+                                                        document.getElementById("kontrolal16").style.display="none";
+                                                        document.getElementById("div16").style.backgroundColor="rgb(255, 70, 70)";
+                                                        document.getElementById("pokracovanil16").style.display="block";
+                                                        chyby=chyby+1}
+                        }
+                        function pokracovatl16(){document.getElementById("div16").style.display="none";document.getElementById("div17").style.display="block"}
+                        function spravne17(){document.getElementById("button17a").style.display="none";
+                                             document.getElementById("button17b").style.display="none";
+                                             document.getElementById("button17c").style.display="none";
+                                             document.getElementById("button17d").style.display="none";
+                                             document.getElementById("div17").style.backgroundColor="lightgreen";
+                                             document.getElementById("vysledekl17").textContent="Správně";
+                                             document.getElementById("pokracovanil17").style.display="block";
+                                             xp = xp+2}
+                        function spatne17(){document.getElementById("button17a").style.display="none";
+                                             document.getElementById("button17b").style.display="none";
+                                             document.getElementById("button17c").style.display="none";
+                                             document.getElementById("button17d").style.display="none";
+                                             document.getElementById("div17").style.backgroundColor="rgb(255, 70, 70)";
+                                             document.getElementById("vysledekl17").textContent="Špatně";
+                                             document.getElementById("pokracovanil17").style.display="block";
+                                             chyby=chyby+1}
+                        function pokracovatl17(){document.getElementById("div17").style.display="none";
+                                                 document.getElementById("div18").style.display="block";
+                                                 document.getElementById("xpvysledek1").textContent = "Získal jsi "+xp+" XP";
+                                                }
+                        function pokracovatl18(){document.getElementById("div1").style.display="none"; 
+                                                 document.getElementById("uvod").style.display="block";
+                                                 document.getElementById("xp").innerHTML = "Tvoje XP: "+xp;
+                                                document.getElementById("l1").style.display="none";
+                                                document.getElementById("l1fake").style.display="block";
+                                                document.getElementById("l2").style.display="block";
+                                                document.getElementById("l2fake").style.display="none";
+                                                }
+                        
+
+                function lekce2(){document.getElementById("uvod").style.display="none";
+                              document.getElementById("div2").style.display="block";
+                              document.getElementById("div21").style.display="block";
+                              document.getElementById("div21").style.fontSize="100%";
+                              document.getElementById("pokracovanil21").style.display="none"
+                        }
+                        function zkontrolovatl21(){let vstupl21 = document.getElementById("l21input").value;
+                                     let spravnel21 = "# @ % =";
+                                     if(vstupl21 === spravnel21){document.getElementById("vysledekl21").innerHTML = "Správně";
+                                        document.getElementById("div21").style.backgroundColor = "lightgreen";
+                                        xp = xp+2;
+                                        xp2 = xp2+2
+                                     }
+                                     else{document.getElementById("vysledekl21").innerHTML = "Špatně";
+                                          document.getElementById("div21").style.backgroundColor = "rgb(255, 70, 70)";
+                                          chyby=chyby+1
+                                     }
+                                     document.getElementById("kontrolal21").style.display = "none";
+                                     document.getElementById("pokracovanil21").style.display = "block";
+                        }
+                        function pokracovatl21(){document.getElementById("div21").style.display="none";
+                                                 document.getElementById("div22").style.display="block"
+                        }
+                        function spravne22(){document.getElementById("div22").style.backgroundColor = "lightgreen";
+                                             document.getElementById("button22a").style.display = "none";
+                                             document.getElementById("button22b").style.display = "none";
+                                             document.getElementById("button22c").style.display = "none";
+                                             document.getElementById("button22d").style.display = "none";
+                                             document.getElementById("button22e").style.display = "none";
+                                             document.getElementById("pokracovani22").style.display = "block";
+                                             document.getElementById("spravne22").textContent = "Správně";
+                                             xp = xp+2; xp2 = xp2+2
+                        }
+                        function spatne22(){document.getElementById("div22").style.backgroundColor = "rgb(255, 70, 70)";
+                                             document.getElementById("button22a").style.display = "none";
+                                             document.getElementById("button22b").style.display = "none";
+                                             document.getElementById("button22c").style.display = "none";
+                                             document.getElementById("button22d").style.display = "none";
+                                             document.getElementById("button22e").style.display = "none";
+                                             document.getElementById("pokracovani22").style.display = "block";
+                                             document.getElementById("spravne22").innerHTML = "Špatně";
+                                             chyby=chyby+1
+                        }
+                        function pokracovat22(){document.getElementById("div22").style.display="none";
+                                                 document.getElementById("div23").style.display="block"}
+                        function zkontrolovatl23(){let vstupl23 = document.getElementById("vstupl23").value;
+                                                 if(vstupl23 ==="AltGr"||vstupl23==="ALTGR" || vstupl23==="altgr" || vstupl23==="alt gr" || vstupl23==="Alt Gr" || vstupl23==="ALT GR")
+                                                    {document.getElementById("vysledekl23").innerHTML = "Správně";
+                                                     document.getElementById("div23").style.backgroundColor = "lightgreen";
+                                                     document.getElementById("kontrolal23").style.display = "none";
+                                                     document.getElementById("pokracovanil23").style.display = "block";
+                                                     xp = xp+2; xp2 = xp2+2
+                                                    }
+                                                 else{document.getElementById("vysledekl23").innerHTML = "Špatně.<br><span style='font-size: 28%'> Správně je AltGr</span>";
+                                                     document.getElementById("div23").style.backgroundColor = "rgb(255, 70, 70)";
+                                                     document.getElementById("kontrolal23").style.display = "none";
+                                                     document.getElementById("pokracovanil23").style.display = "block";
+                                                     chyby=chyby+1}
+
+                        }
+                        function pokracovatl23(){document.getElementById("div23").style.display="none";document.getElementById("div24").style.display="block"}
+                        function zkontrolovatl24(){let vstupl24 = document.getElementById("vstupl24").value;
+                                                   if(vstupl24 === "Enter" ||vstupl24 === "ENTER" || vstupl24 === "enter"){document.getElementById("div24").style.backgroundColor="lightgreen";
+                                                                              document.getElementById("vysledekl24").textContent="Správně";
+                                                                              document.getElementById("pokracovanil24").style.display="block";
+                                                                              document.getElementById("kontrolal24").style.display="none";
+                                                                              xp = xp+2; xp2 = xp2+2
+                                                                             }
+                                                    else{document.getElementById("div24").style.backgroundColor="rgb(255, 70, 70)";
+                                                         document.getElementById("vysledekl24").innerHTML="Špatně. <br><span style='font-size: 28%'> Správně je Enter</span>";
+                                                         document.getElementById("pokracovanil24").style.display="block";
+                                                         document.getElementById("kontrolal24").style.display="none";
+                                                         chyby=chyby+1}
+                        }
+                        function pokracovatl24(){document.getElementById("div24").style.display="none";document.getElementById("div25").style.display="block"}
+                        function spravne25(){document.getElementById("button25a").style.display="none";
+                                             document.getElementById("button25b").style.display="none";
+                                             document.getElementById("button25c").style.display="none";
+                                             document.getElementById("button25d").style.display="none";
+                                             document.getElementById("div25").style.backgroundColor="lightgreen";
+                                             document.getElementById("vysledekl25").textContent="Správně";
+                                             document.getElementById("pokracovanil25").style.display="block";
+                                             xp = xp+2; xp2 = xp2+2
+                        }
+                        function spatne25(){document.getElementById("button25a").style.display="none";
+                                             document.getElementById("button25b").style.display="none";
+                                             document.getElementById("button25c").style.display="none";
+                                             document.getElementById("button25d").style.display="none";
+                                             document.getElementById("div25").style.backgroundColor="rgb(255, 70, 70)";
+                                             document.getElementById("vysledekl25").innerHTML="Špatně.<br><span style='font-size: 28%'> Správně je Alt+F4</span>";
+                                             document.getElementById("pokracovanil25").style.display="block";
+                                             chyby=chyby+1}
+                        function pokracovatl25(){document.getElementById("div25").style.display="none";document.getElementById("div26").style.display="block"}
+                        function zkontrolovatl26(){let vstupl26 = Number(document.getElementById("vstupl26").value);
+                                                   if(vstupl26 === 10){document.getElementById("vysledekl26").innerHTML="Správně";
+                                                                         document.getElementById("kontrolal26").style.display="none";
+                                                                         document.getElementById("div26").style.backgroundColor="lightgreen";
+                                                                         document.getElementById("pokracovanil26").style.display="block";
+                                                                         xp = xp+2; xp2 = xp2+2
+                                                   }
+                                                   else{document.getElementById("vysledekl26").innerHTML="Špatně.<br><span style='font-size: 28%'>Správně je 10</span>";
+                                                        document.getElementById("kontrolal26").style.display="none";
+                                                        document.getElementById("div26").style.backgroundColor="rgb(255, 70, 70)";
+                                                        document.getElementById("pokracovanil26").style.display="block";
+                                                        chyby=chyby+1}
+                        }
+                        function pokracovatl26(){document.getElementById("div26").style.display="none";document.getElementById("div27").style.display="block"}
+                        function spravne27(){document.getElementById("button27a").style.display="none";
+                                             document.getElementById("button27b").style.display="none";
+                                             document.getElementById("button27c").style.display="none";
+                                             document.getElementById("div27").style.backgroundColor="lightgreen";
+                                             document.getElementById("vysledekl27").textContent="Správně";
+                                             document.getElementById("pokracovanil27").style.display="block";
+                                             xp = xp+2; xp2 = xp2+2}
+                        function spatne27(){document.getElementById("button27a").style.display="none";
+                                             document.getElementById("button27b").style.display="none";
+                                             document.getElementById("button27c").style.display="none";
+                                             document.getElementById("div27").style.backgroundColor="rgb(255, 70, 70)";
+                                             document.getElementById("vysledekl27").innerHTML="Špatně.<br><span style='font-size: 28%'> Správně je 2. z panelu</span>";
+                                             chyby=chyby+1
+                                             document.getElementById("pokracovanil27").style.display="block"}
+                        function pokracovatl27(){document.getElementById("div27").style.display="none";
+                                                 document.getElementById("div28").style.display="block";
+                                                 document.getElementById("xpvysledek2").textContent = "Získal jsi "+xp2+" XP";
+                                                }
+                        function pokracovatl28(){document.getElementById("div2").style.display="none"; 
+                                                 document.getElementById("uvod").style.display="block";
+                                                 document.getElementById("xp").innerHTML = "Tvoje XP: "+xp;
+                                                document.getElementById("l1").style.display="none";
+                                                document.getElementById("l1fake").style.display="block";
+                                                document.getElementById("l2").style.display="none";
+                                                document.getElementById("l2fake").style.display="block";
+                                                document.getElementById("l3fake").style.display="none";
+                                                document.getElementById("l3").style.display="block"
+                                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                function lekce3(){document.getElementById("uvod").style.display="none";
+                              document.getElementById("div3").style.display="block";
+                              document.getElementById("div31").style.display="block";
+                              document.getElementById("div31").style.fontSize="100%";
+                              document.getElementById("pokracovanil31").style.display="none"
+                        }
+                        function zkontrolovatl31(){let vstupl31 = document.getElementById("l31input").value;
+                                     if(vstupl31 === "NumLock" || vstupl31==="numlock" || vstupl31==="NUMLOCK" || vstupl31==="NUM LOCK" || vstupl31==="num lock" || vstupl31==="Num Lock"){document.getElementById("vysledekl31").innerHTML = "Správně";
+                                        document.getElementById("div31").style.backgroundColor = "lightgreen";
+                                        xp = xp+2;
+                                        xp3 = xp3+2
+                                     }
+                                     else{document.getElementById("vysledekl31").innerHTML = "Špatně";
+                                          document.getElementById("div31").style.backgroundColor = "rgb(255, 70, 70)";
+                                          chyby=chyby+1
+                                     }
+                                     document.getElementById("kontrolal31").style.display = "none";
+                                     document.getElementById("pokracovanil31").style.display = "block";
+                        }
+                        function pokracovatl31(){document.getElementById("div31").style.display="none";
+                                                 document.getElementById("div32").style.display="block"
+                        }
+                        function spravne32(){document.getElementById("div32").style.backgroundColor = "lightgreen";
+                                             document.getElementById("button32a").style.display = "none";
+                                             document.getElementById("button32b").style.display = "none";
+                                             document.getElementById("button32c").style.display = "none";
+                                             document.getElementById("button32d").style.display = "none";
+                                             document.getElementById("button32e").style.display = "none";
+                                             document.getElementById("pokracovani32").style.display = "block";
+                                             document.getElementById("spravne32").textContent = "Správně";
+                                             xp = xp+2; xp3 = xp3+2
+                        }
+                        function spatne32(){document.getElementById("div32").style.backgroundColor = "rgb(255, 70, 70)";
+                                             document.getElementById("button32a").style.display = "none";
+                                             document.getElementById("button32b").style.display = "none";
+                                             document.getElementById("button32c").style.display = "none";
+                                             document.getElementById("button32d").style.display = "none";
+                                             document.getElementById("button32e").style.display = "none";
+                                             document.getElementById("pokracovani32").style.display = "block";
+                                             document.getElementById("spravne32").innerHTML = "Špatně";
+                                             chyby=chyby+1
+                        }
+                        function pokracovat32(){document.getElementById("div32").style.display="none";
+                                                 document.getElementById("div33").style.display="block"}
+                        function zkontrolovatl33(){let vstupl33 = document.getElementById("vstupl33").value;
+                                                 if(vstupl33 ==="BackSpace"||vstupl33==="backspace" || vstupl33==="BACKSPACE" ||vstupl33==="back space" || vstupl33==="BACK SPACE" || vstupl33==="Back Space")
+                                                    {document.getElementById("vysledekl33").innerHTML = "Správně";
+                                                     document.getElementById("div33").style.backgroundColor = "lightgreen";
+                                                     document.getElementById("kontrolal33").style.display = "none";
+                                                     document.getElementById("pokracovanil33").style.display = "block";
+                                                     xp = xp+2; xp3 = xp3+2
+                                                    }
+                                                 else{document.getElementById("vysledekl33").innerHTML = "Špatně.<br><span style='font-size: 28%'> Správně je BackSpace</span>";
+                                                     document.getElementById("div33").style.backgroundColor = "rgb(255, 70, 70)";
+                                                     document.getElementById("kontrolal33").style.display = "none";
+                                                     document.getElementById("pokracovanil33").style.display = "block";
+                                                    chyby=chyby+1}
+
+                        }
+                        function pokracovatl33(){document.getElementById("div33").style.display="none";document.getElementById("div34").style.display="block"}
+                        function zkontrolovatl34(){let vstupl34 = document.getElementById("vstupl34").value;
+                                                   if(vstupl34 === "m" ||vstupl34 === "M" ){document.getElementById("div34").style.backgroundColor="lightgreen";
+                                                                              document.getElementById("vysledekl34").textContent="Správně";
+                                                                              document.getElementById("pokracovanil34").style.display="block";
+                                                                              document.getElementById("kontrolal34").style.display="none";
+                                                                              xp = xp+2; xp3 = xp3+2
+                                                                             }
+                                                    else{document.getElementById("div34").style.backgroundColor="rgb(255, 70, 70)";
+                                                         document.getElementById("vysledekl34").innerHTML="Špatně. <br><span style='font-size: 28%'> Správně je m</span>";
+                                                         document.getElementById("pokracovanil34").style.display="block";
+                                                         document.getElementById("kontrolal34").style.display="none";
+                                                         chyby=chyby+1}
+                        }
+                        function pokracovatl34(){document.getElementById("div34").style.display="none";document.getElementById("div35").style.display="block"}
+                        function spravne35(){document.getElementById("button35a").style.display="none";
+                                             document.getElementById("button35b").style.display="none";
+                                             document.getElementById("button35c").style.display="none";
+                                             document.getElementById("button35d").style.display="none";
+                                             document.getElementById("div35").style.backgroundColor="lightgreen";
+                                             document.getElementById("vysledekl35").textContent="Správně";
+                                             document.getElementById("pokracovanil35").style.display="block";
+                                             xp = xp+2; xp3 = xp3+2
+                        }
+                        function spatne35(){document.getElementById("button35a").style.display="none";
+                                             document.getElementById("button35b").style.display="none";
+                                             document.getElementById("button35c").style.display="none";
+                                             document.getElementById("button35d").style.display="none";
+                                             document.getElementById("div35").style.backgroundColor="rgb(255, 70, 70)";
+                                             document.getElementById("vysledekl35").innerHTML="Špatně.<br><span style='font-size: 28%'>Win+I</span>";
+                                             document.getElementById("pokracovanil35").style.display="block";
+                                             chyby=chyby+1}
+                        function pokracovatl35(){document.getElementById("div35").style.display="none";document.getElementById("div36").style.display="block"}
+                        function zkontrolovatl36(){let vstupl36 = document.getElementById("vstupl36").value;
+                                                   let vstupl36a = document.getElementById("vstupl36a").value;
+                                                   if(vstupl36 ===""&& vstupl36a==="25002"){document.getElementById("vysledekl36").innerHTML="Správně";
+                                                                         document.getElementById("kontrolal36").style.display="none";
+                                                                         document.getElementById("div36").style.backgroundColor="lightgreen";
+                                                                         document.getElementById("pokracovanil36").style.display="block";
+                                                                         xp = xp+2; xp3 = xp3+2
+                                                   }
+                                                   else{document.getElementById("vysledekl36").innerHTML="Špatně";
+                                                        document.getElementById("kontrolal36").style.display="none";
+                                                        document.getElementById("div36").style.backgroundColor="rgb(255, 70, 70)";
+                                                        document.getElementById("pokracovanil36").style.display="block";
+                                                        chyby=chyby+1}
+                        }
+                        function pokracovatl36(){document.getElementById("div36").style.display="none";document.getElementById("div37").style.display="block"}
+                        function spravne37(){document.getElementById("button37a").style.display="none";
+                                             document.getElementById("button37b").style.display="none";
+                                             document.getElementById("button37c").style.display="none";
+                                             document.getElementById("div37").style.backgroundColor="lightgreen";
+                                             document.getElementById("vysledekl37").textContent="Správně";
+                                             document.getElementById("pokracovanil37").style.display="block";
+                                             xp = xp+2; xp3 = xp3+2}
+                        function spatne37(){ document.getElementById("button37a").style.display="none";
+                                             document.getElementById("button37b").style.display="none";
+                                             document.getElementById("button37c").style.display="none";
+                                             document.getElementById("div37").style.backgroundColor="rgb(255, 70, 70)";
+                                             document.getElementById("vysledekl37").innerHTML="Špatně.<br><span style='font-size: 28%'> Správně je Otevře se předčítání</span>";
+                                             document.getElementById("pokracovanil37").style.display="block";
+                                             chyby=chyby+1}
+                        function pokracovatl37(){document.getElementById("div37").style.display="none";
+                                                 document.getElementById("div38").style.display="block";
+                                                 document.getElementById("xpvysledek3").textContent = "Získal jsi "+xp3+" XP";
+                                                }
+                        function pokracovatl38(){document.getElementById("div3").style.display="none"; 
+                                                 document.getElementById("uvod").style.display="block";
+                                                 document.getElementById("xp").innerHTML = "Tvoje XP: "+xp;
+                                                document.getElementById("l1").style.display="none";
+                                                document.getElementById("l1fake").style.display="block";
+
+                                                document.getElementById("l2").style.display="none";
+                                                document.getElementById("l2fake").style.display="block";
+
+                                                document.getElementById("l3").style.display="none";
+                                                document.getElementById("l3fake").style.display="block";
+                                                document.getElementById("l4").style.display="block";
+                                                document.getElementById("l4fake").style.display="none";
+                                                }
+
+
+                        function lekce4(){document.getElementById("uvod").style.display="none";
+                              document.getElementById("div4").style.display="block";
+                        }
+
+
+                                    function ctrlabf(){vysl4=vysl4+1; if(vysl4!==3){spatne4()} else{xp = xp+1; xp4 = xp4+1}}
+                                    function ctrlpbf(){vysl4=vysl4+1; if(vysl4!==6){spatne4()} else{xp = xp+1; xp4 = xp4+1;spravne4()}}
+                                    function ctrlrbf(){vysl4=vysl4+1; if(vysl4!==1){spatne4()} else{xp = xp+1; xp4 = xp4+1}}
+                                    function ctrlsbf(){vysl4=vysl4+1; if(vysl4!==4){spatne4()} else{xp = xp+1; xp4 = xp4+1}}
+                                    function ctrltbf(){vysl4=vysl4+1; if(vysl4!==2){spatne4()} else{xp = xp+1; xp4 = xp4+1}}
+                                    function ctrlybf(){vysl4=vysl4+1; if(vysl4!==5){spatne4()} else{xp = xp+1; xp4 = xp4+1}}
+                                    function spravne4(){document.getElementById("ctrlab").style.display="none";
+                                                        document.getElementById("ctrlpb").style.display="none";
+                                                        document.getElementById("ctrlrb").style.display="none";
+                                                        document.getElementById("ctrlsb").style.display="none";
+                                                        document.getElementById("ctrltb").style.display="none";
+                                                        document.getElementById("ctrlyb").style.display="none";
+                                                        document.getElementById("div4").style.backgroundColor="lightgreen";
+                                                        document.getElementById("pokracovani4").style.display="block";
+                                                        document.getElementById("vysledek4").textContent="Správně";
+                                                        }
+                                    function spatne4(){document.getElementById("ctrlab").style.display="none";
+                                                        document.getElementById("ctrlpb").style.display="none";
+                                                        document.getElementById("ctrlrb").style.display="none";
+                                                        document.getElementById("ctrlsb").style.display="none";
+                                                        document.getElementById("ctrltb").style.display="none";
+                                                        document.getElementById("ctrlyb").style.display="none";
+                                                        document.getElementById("div4").style.backgroundColor="rgb(255, 70, 70)";
+                                                        document.getElementById("pokracovani4").style.display="block";
+                                                        document.getElementById("vysledek4").textContent="Špatně";
+                                                        }
+                                    function pokracovat4(){document.getElementById("div4").style.display="none";
+                                                            document.getElementById("div41").style.display="block";
+                                                            document.getElementById("xpvysledek4").textContent="Získali jsi "+ xp4+ "XP a za celou dobu "+xp+"XP"}
+                                    function jdidomu(){document.getElementById("div4").style.display="none"; 
+                                    document.getElementById("div41").style.display="none";
+                                    document.getElementById("uvod").style.display="block"; 
+                                    document.getElementById("xp").style.display="block"; 
+                                    document.getElementById("xp").innerHTML = "Tvoje XP: "+xp; 
+                                    document.getElementById("l4").style.display="none";
+                                    document.getElementById("l4fake").style.display="block";}
+
+        </script>
+    </body>
+</html>
